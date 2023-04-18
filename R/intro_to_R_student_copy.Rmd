@@ -1,0 +1,805 @@
+---
+title: "Introduction to R: Basics of R and R Data Structures" 
+author: "Bonfire-113"    
+date: "March 31st, 2023"
+---
+
+## What is R?
+
+R is a programming language that was built and designed by statisticians. R was built for the purpose of crunching numbers and providing a quick and easy way for statisticians, with little programming knowledge, to be able to create visualizations and input complicated formulas to return results quickly, efficiently, and accurately.
+
+R is used today by Data Analysts, Scientists, and statisticians everywhere. It is a useful and easy-to-use language with many similarities in it's syntax to Python.
+
+## Installing Packages
+
+### What is a package?
+
+![](https://pythongeeks.org/wp-content/uploads/2021/12/structure-of-packages.webp)
+
+In R, a package is the same thing as a library in Python. In fact, each library in Python **is** a package. In order to pip install a library, it first needs to be packaged and pushed to [PyPi](https://pypi.org). When we package a library, we are zipping the files together and uploading them as a package to PyPi for anyone to access.
+
+### How to Install and Load a Package in R
+
+In order to access a library in Python, we use the line of code `pip install >package_name<`. In R, we do this a bit differently because pip doesn't exist in R, it is a unique installer to Python. We will instead use the R console to access the function `install.packages('>package_name<')`. Let's test this out with the package `tidyverse`. In our console, let's replicate this code:
+
+```{r}
+install.packages('tidyverse')
+```
+
+If you remember how we load a library into Python, installing a Package is not enough to access it. Once it is installed, we still need to load it. We can accomplish this using the function `library(>package_name<)`. Let's look at how we would execute this in our terminal using `tidyverse`:
+
+```{r}
+library(tidyverse)
+```
+
+Now, this library is loaded into our R environment and we can begin to use it!
+
+```{r}
+
+ggplot(mpg, aes(displ, hwy, colour = class)) + geom_point()
+```
+
+### R-Markdown
+
+#### What is Markdown?
+
+Markdown is a text-based language for creating documentation. Markdown is used in GitHub to create readme documents and can be identified by the .md file type. In R, markdown is a very powerful tool, allowing us to create entire notebooks out of it!
+
+Markdown uses a multitude of symbols to denote different abilities present within the language. For example, using a `#` in front of a line of code creates a title, just like you see above here!
+
+Some other examples of what we can do in markdown are:
+
+-   bullets
+
+-   *italics*
+
+-   **bold**
+
+-   ***italic and bold***
+
+-   [links](https://google.com)
+
+-   ![images](https://editor.analyticsvidhya.com/uploads/375512.jpg)
+
+-   write code `inline` write a code block `inline` and allow others to run it
+
+```{r}
+print("Hello World!")
+
+```
+
+### Comments
+
+Comments in R are denoted by `#`
+
+```{r}
+# This is a comment
+
+''' This is not a comment'''
+```
+
+There is no built-in way to do multi-line comments.
+
+## R Basic Operations
+
+## Mathematical Operations
+
+Mathematical operations in R are handled using the standard 4 symbols `+, -, /, and *` . Operations are calculated using PEMDAS.
+
+### Addition
+
+```{r}
+# Addition
+
+```
+
+### Subtraction
+
+```{r}
+# Subtraction
+
+```
+
+### Multiplication
+
+```{r}
+# Multiplication
+
+```
+
+### Division
+
+```{r}
+# Division
+
+```
+
+### Floor Division
+
+```{r}
+
+```
+
+### Modulo Operator
+
+```{r}
+
+```
+
+## Variable Assignment
+
+Variables in R are traditionally assigned using an arrow sign `<-` , made using a less than carat and a dash. It is valid to use `=` , but not recommended.
+
+```{r}
+
+```
+
+Variable names can not include and spaces or symbols other than the underscore `_` . They cannot begin with numbers, but can include numbers after the first character.
+
+```{r}
+
+
+```
+
+## In-Class Exercise 1:
+
+Create three variables; x, y, and z. Assign each of these variables a numerical value, then perform each of the operands you have learned about so far to all three variables.
+
+```{r}
+
+```
+
+## Data Types
+
+R has the following data types: numeric, integer, character, logical, and complex.
+
+### Numeric
+
+Decimal values in R are numerics. Numerics are the default data type for numbers.
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+Note: Numerics are not integers. You can confirm this with both a and b above using the `is.integer()` function.
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+### Integer
+
+To create an integer in R we can use the `as.integer()` function.
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+For shorthand, we can also define an integer by writing the desired integer value, followed by a capital L.
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+Integers must be whole numbers, if passed a floating value, the number will be rounded to an integer.
+
+```{r}
+
+```
+
+This also works with a string.
+
+```{r}
+
+```
+
+We would use an integer data-type when we want to represent a whole integer, and don't want to accept any other variations of numbers. The numeric data-type is less strict, it allows us to switch between different number types like integers and floats dynamically.
+
+### Character
+
+A **character** type is used to represent strings in R. Characters can be denoted by writing within quotes.
+
+```{r}
+# Defining a character object
+
+```
+
+#### Concatenating character objects
+
+Character objects can be concatenated into a single variable using the `paste` function
+
+```{r}
+
+```
+
+#### Converting into character objects
+
+We can convert other objects into character objects using the `as.character()` function
+
+```{r}
+
+```
+
+```{r}
+# Note that class returns the data type of our object
+
+```
+
+#### Printing character types
+
+You can print out hard-coded character objects with the `print` function
+
+```{r}
+
+```
+
+You can print out formatted character objects with the `sprintf` function. You can use the following symbols to represent formatted parts of the code, each should be preceded by a `%` symbol:
+
+-   d and i - Integer values
+
+-   s - Character string
+
+-   o - Octal
+
+-   x and X - Hexadecimal
+
+-   f - Double precision value (For fixed point representation, for example: 21.234)
+
+-   e and E - Double precision value (For exponential representation, for example: 2.1234e+01)
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+#### Return a substring
+
+You can get a substring from a character object using the `substr` function
+
+```{r}
+
+```
+
+#### Replacing characters in a string
+
+You can replace characters in a string using the `sub` function
+
+```{r}
+
+```
+
+## In-Class Exercise 2:
+
+Create two character objects. Concatenate them together to form a single sentence. Then, use the sprintf function to create the strings using formatted code. Then, replace two words in your string, returning them as a substring
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+### Logical
+
+A logical value is commonly referred to as a boolean value. It is the result of a comparison between two variables. It is represented as `TRUE` or `FALSE.`
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+#### Logical Operators
+
+The standard logical operations are:
+
+-   `&` - And
+
+-   `|` - Or
+
+-   `!` - Not
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+### Complex
+
+A complex object in R is created using the symbol `i` . The use of the i symbol is in reference to imaginary numbers.
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+## Comparison Operators
+
+You can use the following operators to compare two variables and return a logical object:
+
+-   `<` Less than
+
+-   `>` Greater than
+
+-   `<=` Less than or equal to
+
+-   `>=` Greater than or equal to
+
+-   `==` Is equal to
+
+-   `!=` Is NOT equal to
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+# Data Structures
+
+## Vectors
+
+Vectors are a list-like data structure that can contain any number of items of the same data type. Vector elements are separated by commas, and the entire vector must be wrapped in `c()`
+
+```{r}
+
+```
+
+### Getting a Vector's Type
+
+You can get the type of the elements inside of a vector using the `typeof()` function
+
+```{r}
+
+```
+
+### Getting a Vector's Length
+
+You can get the length of a vector using the `length()` function
+
+```{r}
+
+```
+
+### Indexing a Vector
+
+You can get the value at a specific index in your vector by placing the elements position within brackets, ex: `[1]` .
+
+**NOTE: Indexes in R start at 1, NOT 0.**
+
+```{r}
+
+```
+
+### Generating a sequence between two numerical values
+
+We can generate a sequence using the `:` operator. This will create a range of values from `start`:`stop`, inclusive of the stopping number
+
+```{r}
+
+```
+
+#### Using the seq() function
+
+You can also create sequences with more customization by using the `seq()` function. With this you can set a "step" value (this is the `by` parameter).
+
+```{r}
+
+```
+
+### Vector Sorting
+
+You can sort vectors using the `sort()` function
+
+```{r}
+
+```
+
+### Vector Calculations
+
+```{r}
+
+```
+
+#### Addition
+
+```{r}
+
+```
+
+#### Subtraction
+
+```{r}
+
+```
+
+#### Multiplication
+
+```{r}
+
+```
+
+#### Division
+
+```{r}
+
+```
+
+#### Floor Division
+
+```{r}
+
+```
+
+#### Modulo Operation
+
+```{r}
+
+```
+
+### In-Class Exercise 3:
+
+Create two vectors using a manual sequence and the `seq()` function. When done, complete the vector calculations you learned above on your vectors and print each one.
+
+```{r}
+
+```
+
+### Vector Recycling
+
+If we perform vector calculations on uneven vectors, the elements of the shorter vectors are reused to fill in the remaining length
+
+```{r}
+
+```
+
+## Lists
+
+Lists in R are generic objects that contain an ordered collection of objects. Lists can contain a variety of data types (they are heterogeneous). Lists are created with the `list()` function.
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+## Dataframes
+
+Dataframes are generic objects that store tabular data. They are two-dimensional data structures that can store any data-type (they are heterogeneous). Dataframes store lists of vectors of equal length (each vector is, essentially, a row).
+
+Dataframes have the following constraints: 
+
+-   A dataframe must have column names and every row should have a unique name.
+
+-   Each column must have an identical number of items.
+
+-   Each item in a single column must be of the same data type.
+
+-   Different columns may have different data types.
+
+When creating a dataframe, you first create the values for each column, and use these to generate your dataframe. You generate a dataframe using the `data.frame()` function.
+
+```{r}
+
+```
+
+### str()
+
+You can get the structure of a dataframe using the `str()` function
+
+```{r}
+
+```
+
+### summary()
+
+You can get a summary of the data inside of a dataframe using the `summary()` function. This returns useful information like the type of each column and statistical information like the mean, median, and mode of numerical columns.
+
+```{r}
+
+```
+
+### Retrieving data from a dataframe
+
+You can index specific columns from a dataframe using the dataframe variable, then a `$` , then the name of the column.
+
+```{r}
+
+```
+
+You can also index specific rows by calling the name of the dataframe, followed by square brackets and the rows you want to retrieve. The square brackets accept two values, the first is the rows you want, the second is the columns.
+
+```{r}
+# Get the first two rows and all of the columns
+
+```
+
+```{r}
+# Get the first and third rows and all of the columns
+
+```
+
+```{r}
+# Get the first and third rows and the first and third columns
+
+```
+
+### Adding New Columns
+
+A new column can be added to a dataframe by indexing the column using the `$` symbol and setting the value to a vector
+
+```{r}
+
+```
+
+### Adding New Rows
+
+To add new rows to a dataframe, we need to first create a new dataframe using the same structure as the original, then combine the two using the `rbind()` function
+
+```{r}
+
+```
+
+## Matrices
+
+A matrix is a two-dimensional assortment of number data points in columns and rows. In matrices columns run horizontally and rows run vertically. To create a matrix you call the `matrix()` function. You'll have to pass in a vector of data to generate the matrix from, the number of rows you want, and the number of columns you want. Remember, matrices are in column-wise order.
+
+The following parameters are available to you using matrices:
+
+-   **data** is the input vector.
+
+-   **nrow** is the number of rows to be created.
+
+-   **ncol** is the number of columns to be created.
+
+-   **byrow** If TRUE then the input vector elements are arranged by row, if FALSE they are arranged by column. This is false by default.
+
+-   **dimnames** is the names assigned to the rows and columns.
+
+```{r}
+
+```
+
+### Naming Columns and Rows
+
+You can name columns and rows with the optional dimnames parameter
+
+```{r}
+
+```
+
+### Accessing Matrix Values
+
+Values in a matrix can be accessed by indexing with square brackets.
+
+```{r}
+# Get the element in the 2nd row and 4th column
+
+```
+
+You can also get entire rows and columns.
+
+```{r}
+
+```
+
+### Calculations between two matrices
+
+```{r}
+
+```
+
+#### Addition
+
+```{r}
+
+```
+
+#### Subtraction
+
+```{r}
+
+```
+
+#### Multiplication
+
+```{r}
+
+```
+
+#### Division
+
+```{r}
+
+```
+
+## In-Class Exercise 4:
+
+## Arrays
+
+Arrays can store data in more than two dimensions.They are n-dimensional. If we create an array with the dimensions of (5,6,6), it will create 6 matrices with 5 rows and 6 columns. Arrays are created with the `array ()` function. The first argument is the vector of data to display, the second is the desired dimensions for your array.
+
+```{r}
+
+```
+
+### Naming Array columns and rows
+
+You can name columns, rows, and matrices using the optional dimnames parameter
+
+```{r}
+
+```
+
+### Accessing Array Elements
+
+You can access array elements with square brackets, then three arguments. The row, the column, then the matrix.
+
+```{r}
+# Get the element in the second row, third column, first matrix
+
+```
+
+```{r}
+# Get the second row of all of the matrices
+
+```
+
+```{r}
+# Get the second column of all of the matrices
+
+```
+
+```{r}
+# Get the second matrix
+
+```
+
+## Factors
+
+Factors are used to categorize and store data. Factors are primarily useful when working with categorical data. Factors are useful in data analysis for statistical modeling. Factor data is expected to be a vector of limited, unique values.
+
+Factors are created using the `factor()` function and passing in a vector of data.
+
+```{r}
+# A factor of eye colors
+
+```
+
+You can also use the optional levels parameter to specify the order in which the levels should be displayed.
+
+```{r}
+
+```
+
+## Homework
+
+vec1 \<- c(1, 2, 3, 4, 5, 6, 7, 8, 9)
+
+vec2 \<- c(10, 11, 12, 13, 14, 15, 16, 17, 18)
+
+1.  Create an array of two 3x3 matrices from the given vectors.
+
+    ```{r}
+    vec1 <- c(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    vec2 <- c(10, 11, 12, 13, 14, 15, 16, 17, 18)
+
+
+
+    # Creating the array of two 3x3 matrices
+
+    arr <- array(c(vec1, vec2), dim = c(3, 3, 2))
+    arr
+
+
+
+    ```
+
+2.  In the above matrix that you created, print the value 5 by indexing in to the matrix.
+
+    ```{r}
+
+    # Indexing the matrix and printing the value 5
+
+    print(arr[2, 2, 1])
+
+    ```
+
+3.  Print the third row of the first matrix.
+
+    ```{r}
+
+    # Printing the third row of the first matrix
+
+    print(arr[3, , 1])
+
+    ```
+
+4.  Print the second column of both matrices.
+
+    ```{r}
+
+    # Printing the second column of both matrices
+
+    print(arr[, 2, ])
+
+    ```
+
+5.  Create two strings with your first and last name, respectively. Then concatenate them, and print the new value as "My name is \<your newly created concatenated variable will go here\>"
+
+    ```{r}
+
+    # Creating two strings with first and last name
+    first_name <- "Nariman"
+    last_name <- "Yousefzadeh"
+
+    # Concatenating the strings
+    full_name <- paste(first_name, last_name, sep = " ")
+
+    # Printing the result
+    print(paste("My name is", full_name))
+
+    ```
+
+6.  What values can a BOOLEAN contain?
+
+    ```{r}
+
+    # A logical value is commonly referred to as a boolean value. It is the result of a comparison between two variables. It is represented as TRUE or FALSE.
+    ```
