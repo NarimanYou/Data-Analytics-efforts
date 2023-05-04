@@ -1,0 +1,123 @@
+### Task :
+
+Find a built-in data set you would like to explore. Explore the data set and use the cheat sheet you built to label continuous and discrete data. Analyze the data set using dplyr, create graphs, mutate two columns, and formulate a hypothesis about your data.
+
+```{r}
+library(dplyr)
+data(mtcars)
+str(mtcars)
+
+```
+
+```{r}
+# Selecting a subset of columns
+mtcars_select <- select(mtcars, mpg, cyl, hp, wt, qsec, gear)
+
+# Filtering rows based on a condition
+mtcars_filtered <- filter(mtcars_select, cyl == 4)
+
+# Grouping the data by number of gears
+mtcars_grouped <- group_by(mtcars_filtered, gear)
+
+# Summarizing the data by calculating the mean of each variable
+mtcars_summarized <- summarize(mtcars_grouped,
+                                mean_mpg = mean(mpg),
+                                mean_hp = mean(hp),
+                                mean_wt = mean(wt),
+                                mean_qsec = mean(qsec))
+
+# Arranging the data by descending order of mean mpg
+mtcars_arranged <- arrange(mtcars_summarized, desc(mean_mpg))
+
+# Creating a bar graph of mean mpg by number of gears
+library(ggplot2)
+ggplot(mtcars_arranged, aes(x = factor(gear), y = mean_mpg)) + 
+  geom_bar(stat = "identity") +
+  xlab("Number of gears") +
+  ylab("Mean MPG") +
+  ggtitle("Mean MPG by Number of Gears")
+
+```
+
+```{r}
+mtcars_mutated <- mutate(mtcars, wt_lbs = wt * 2205)
+
+```
+
+```{r}
+ggplot(mtcars_mutated, aes(x = wt_lbs, y = hp)) +
+  geom_point() +
+  xlab("Weight (lbs)") +
+  ylab("Horsepower") +
+  ggtitle("Horsepower vs Weight (lbs)")
+
+```
+
+```{r}
+mtcars_filtered <- filter(mtcars, am == 1)
+
+```
+
+```{r}
+mtcars_grouped <- group_by(mtcars_filtered, cyl)
+
+mtcars_summary <- summarize(mtcars_grouped,
+                            mean_hp = mean(hp),
+                            mean_mpg = mean(mpg))
+
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(mtcars_summary, aes(x = factor(cyl), y = mean_hp, fill = "Horsepower")) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_bar(aes(x = factor(cyl), y = mean_mpg, fill = "MPG"), stat = "identity", position = "dodge") +
+  scale_fill_manual(values = c("#0072B2", "#F0E442")) +
+  xlab("Number of Cylinders") +
+  ylab("Mean Value") +
+  ggtitle("Mean Horsepower and MPG by Number of Cylinders")
+
+```
+
+```{r}
+mtcars_mutated <- mutate(mtcars, wt_lbs = wt * 2205, hp_wt_ratio = hp / (wt_lbs / 1000))
+
+```
+
+```{r}
+ggplot(mtcars, aes(x = hp, y = mpg)) +
+  geom_point() +
+  xlab("Horsepower") +
+  ylab("Miles per gallon") +
+  ggtitle("Horsepower vs. Miles per gallon")
+
+```
+
+```{r}
+ggplot(mtcars, aes(x = mpg)) +
+  geom_histogram(binwidth = 3, fill = "steelblue", color = "white") +
+  xlab("Miles per gallon") +
+  ylab("Frequency") +
+  ggtitle("Distribution of miles per gallon")
+
+```
+
+```{r}
+ggplot(mtcars, aes(x = mpg, fill = factor(cyl))) +
+  geom_density(alpha = 0.5) +
+  xlab("Miles per gallon") +
+  ylab("Density") +
+  ggtitle("Density of miles per gallon by number of cylinders")
+
+```
+
+```{r}
+
+```
+
+Based on the analysis and visualization of the "mtcars" data set, we can formulate several hypotheses. One possible hypothesis is that there is a negative correlation between horsepower and miles per gallon, meaning that as horsepower increases, miles per gallon decreases. This could be due to the fact that more powerful cars typically have larger engines, which consume more fuel. We can test this hypothesis by calculating the correlation coefficient between horsepower and miles per gallon and performing a hypothesis test to determine if the correlation is statistically significant.
+
+Another hypothesis is that the number of cylinders in a car is related to both its horsepower and miles per gallon. Cars with more cylinders may have higher horsepower, but lower fuel efficiency due to their larger engines. We can test this hypothesis by analyzing the relationship between number of cylinders, horsepower, and miles per gallon, and performing a regression analysis to determine the impact of each variable on the others.
+
+Overall, the "mtcars" data set provides a rich set of data for exploring and analyzing the relationships between various automotive features, and there are many possible hypotheses that can be tested based on this data.
