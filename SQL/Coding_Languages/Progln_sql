@@ -1,0 +1,16 @@
+SELECT * FROM mytable;
+SELECT COUNT(*) FROM mytable;
+SELECT AVG(value) FROM mytable;
+SELECT MAX(value), date FROM mytable;
+SELECT * FROM mytable WHERE value > 100;
+
+-- Extract data for Python and Java
+SELECT date, python, java
+FROM mytable
+WHERE python IS NOT NULL AND java IS NOT NULL;
+
+-- Join data for Python and Java
+SELECT date, python, java
+FROM mytable
+WHERE python IS NOT NULL AND java IS NOT NULL
+ORDER BY date ASC;
